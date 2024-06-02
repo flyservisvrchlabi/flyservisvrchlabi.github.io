@@ -1,0 +1,63 @@
+:root {
+	--bs-blue: #9a672f;
+	--bs-blue-hover: #764f24;
+	--color-white: #ffffff;
+	--color-text: #313131;
+	--color-light-bg: #c3c3c3;
+}
+
+html {
+	font-family: Metropolis, Metropolis-Fallback, system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+	font-size: 18px;
+}
+
+body {
+	background-color: var(--color-light-bg);
+	color: var(--color-text);
+}
+
+a {
+	color: var(--bs-blue);
+}
+
+a:hover {
+	color: var(--bs-blue-hover);
+}
+
+.btn-primary {
+	background-color: var(--bs-blue);
+	border-color: var(--bs-blue);
+}
+
+.btn-primary:hover {
+	background-color: var(--bs-blue-hover);
+	border-color: var(--bs-blue-hover);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Reklame Script", Reklame-Script-Fallback, serif;
+}
+
+.color-white {
+	color: var(--color-white);
+}
+
+.hero__img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	object-position: center;
+	aspect-ratio: 16 /6;
+}
+
+.hero--small .hero__img {
+	aspect-ratio: 16 / 4;
+}
+
+.services__img {
+	width: 4rem;
+	height: 4rem;
+}
