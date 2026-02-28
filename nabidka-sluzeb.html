@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Jsme firma specializovaná na servis motorů pro ultralehká letadla. Provádíme záruční a pozáruční servis motorů Zonsen aero engine.">
-		<meta name="robots" content="noindex, nofollow">
+		<meta name="robots" content="index, follow">
 
-		<title>Flyservis Vrchlabí - Váš partner pro bezstarostné lety</title>
+		<title>Nabídka služeb | Flyservis Vrchlabí - Váš partner pro bezstarostné lety</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
 							<a href="https://fly-servis.cz/" class="menu-link">Úvod</a>
 						</li>
 						<li class="menu-item">
-							<a href="https://fly-servis.cz/nabidka-sluzeb" class="menu-link">Nabídka služeb</a>
+							<a href="https://fly-servis.cz/nabidka-sluzeb" class="menu-link is-active">Nabídka služeb</a>
 						</li>
 					</ul>
 				</div>
@@ -39,19 +39,55 @@
 			</div>
 		</header>
 		<main>
-			<section aria-label="O nás">
+			<section aria-label="Nabídka služeb">
 				<div class="about-us text-center mt-5 mb-5">
 					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col col-md-6 col-lg-5">
-								<h2 class="mb-4">Děkujeme! Vaše zpráva už k&nbsp;nám letí</h2>
-								<p class="lh-lg mb-4">Jakmile vyndáme ruce z&nbsp;motorů, ozveme se vám zpět. Nejdéle ale do dvou pracovních dnů.</p>
-								<a href="https://fly-servis.cz/" class="btn btn-primary">Zpět na úvodní stránku</a>
+						<div class="row">
+							<div class="col col-12">
+								<h2 class="mb-5">Nabídka služeb</h2>
+								<div class="pdf-grid" id="pdf-grid"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 		</main>
+
+		<script>
+		fetch("https://opensheet.elk.sh/1KNRRtRDdsnpVh2WWxNrr49HXw3gy7kbkXpoIR6qyG44/odkazyPDF")
+		  .then(res => res.json())
+		  .then(data => {
+			const container = document.getElementById("pdf-grid");
+
+			data.forEach(item => {
+			  if (!item.odkaz_na_pdf) return;
+
+			  const match = item.odkaz_na_pdf.match(/\/d\/(.*?)\//);
+			  if (!match) return;
+
+			  const fileId = match[1];
+			  const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+			  const openUrl = `https://drive.google.com/file/d/${fileId}/view`;
+
+			  const card = document.createElement("div");
+			  card.className = "pdf-card";
+
+			  card.innerHTML = `
+				  <h3>${item.nazev}</h3>
+				  <div class="pdf-content">
+				    <div class="pdf-preview-wrapper">
+				      <iframe src="${previewUrl}" loading="lazy"></iframe>
+				    </div>
+				    <a href="${openUrl}" target="_blank" rel="noopener">
+				      Otevřít PDF
+				    </a>
+				  </div>
+				`;
+
+			  container.appendChild(card);
+			});
+		  });
+		</script>
+
 	</body>
 </html>
