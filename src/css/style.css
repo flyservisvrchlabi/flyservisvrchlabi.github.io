@@ -57,7 +57,66 @@ h4 {
 	aspect-ratio: 16 / 4;
 }
 
+@media (max-width: 480px) {
+	.hero--small .hero__img {
+		aspect-ratio: 16 / 6;
+	}
+}
+
 .services__img {
 	width: 4rem;
 	height: 4rem;
+}
+
+.main-menu {
+	display: inline-block;
+	list-style: none;
+}
+
+.menu-item {
+	display: inline-block;
+	padding-left: 1rem;
+}
+
+.menu-link {
+	color: #fff;
+}
+
+.menu-link:hover {
+	color: var(--bs-blue);
+}
+
+.menu-link.is-active {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.menu-link.is-active:hover {
+	color: #fff;
+}
+
+/* === PDF GRID === */
+
+.pdf-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.pdf-card {
+  flex: 0 1 calc(50% - 16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .pdf-card {
+    flex: 1 1 100%;
+  }
+}
+
+.pdf-preview-wrapper iframe {
+	min-height: 20rem;
 }
